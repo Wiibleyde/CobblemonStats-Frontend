@@ -112,7 +112,8 @@ export function Leaderboard() {
     return (
         <div className="flex flex-col items-center m-4 lg:m-16">
             <h1 className="text-4xl font-bold text-white mb-8">Classements</h1>
-            <div className="flex flex-col lg:flex-row justify-around w-full lg:w-2/3 space-y-8 lg:space-y-0 lg:space-x-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:w-5/5 lg:grid-cols-4 gap-8 w-full">
+                <div className="w-full">
                 <LeaderboardTable
                     title="Pokémon attrapés"
                     loading={pokemonLoading}
@@ -120,6 +121,8 @@ export function Leaderboard() {
                     elements={pokemon}
                     rowMapper={pokemonRowMapper}
                 />
+</div>
+                <div className="w-full">
                 <LeaderboardTable
                     title="Pokémon dans le pokédex"
                     loading={pokedexLoading}
@@ -127,6 +130,8 @@ export function Leaderboard() {
                     elements={pokedex}
                     rowMapper={pokedexRowMapper}
                 />
+</div>
+                <div className="w-full">
                 <LeaderboardTable
                     title="Temps de jeu"
                     loading={playtimeLoading}
@@ -134,6 +139,8 @@ export function Leaderboard() {
                     elements={playtime}
                     rowMapper={playtimeRowMapper}
                 />
+</div>
+                <div className="w-full">
                 <LeaderboardTable
                     title="Morts"
                     loading={deathsLoading}
@@ -141,6 +148,8 @@ export function Leaderboard() {
                     elements={deaths}
                     rowMapper={deathsRowMapper}
                 />
+</div>
+                <div className="w-full">
                 <LeaderboardTable
                     title="Temps en sneak (en minutes)"
                     loading={sneakTimeLoading}
@@ -148,6 +157,8 @@ export function Leaderboard() {
                     elements={sneakTime}
                     rowMapper={sneakTimeRowMapper}
                 />
+</div>
+                <div className="w-full">
                 <LeaderboardTable
                     title="Distance parcourue (en mètres)"
                     loading={distanceTraveledLoading}
@@ -155,6 +166,8 @@ export function Leaderboard() {
                     elements={distanceTraveled}
                     rowMapper={distanceTraveledRowMapper}
                 />
+</div>
+                <div className="w-full">
                 <LeaderboardTable
                     title="Lootballs ouvertes"
                     loading={lootballOpennedLoading}
@@ -162,6 +175,8 @@ export function Leaderboard() {
                     elements={lootballOpenned}
                     rowMapper={lootballOpennedRowMapper}
                 />
+</div>
+                <div className="w-full">
                 <LeaderboardTable
                     title="Coffres Lootr ouverts"
                     loading={lootrChestsOpennedLoading}
@@ -171,5 +186,6 @@ export function Leaderboard() {
                 />
             </div>
         </div>
+</div>
     )
 }
