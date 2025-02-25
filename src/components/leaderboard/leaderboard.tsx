@@ -14,8 +14,8 @@ export interface PokedexCaught {
 }
 
 export function Leaderboard() {
-    const { data: pokemon, error: pokemonError, isLoading: pokemonLoading } = useSWR(process.env.NEXT_PUBLIC_API_URL + "/api/v1/leaderboard/pokemon_caught", fetcher)
-    const { data: pokedex, error: pokedexError, isLoading: pokedexLoading } = useSWR(process.env.NEXT_PUBLIC_API_URL + "/api/v1/leaderboard/pokedex_caught", fetcher)
+    const { data: pokemon, error: pokemonError, isLoading: pokemonLoading } = useSWR("/api/leaderboard/pokemon_caught", fetcher)
+    const { data: pokedex, error: pokedexError, isLoading: pokedexLoading } = useSWR("/api/leaderboard/pokedex_caught", fetcher)
 
     const pokemonRowMapper = (item: PokemonCaught) => ({
         name: item.user,
