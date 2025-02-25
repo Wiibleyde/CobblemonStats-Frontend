@@ -2,6 +2,7 @@
 import useSWR from "swr"
 import { fetcher } from "@/utils";
 import { LeaderboardTable } from "./sub/LeaderboardTable";
+import { useEffect } from "react";
 
 export interface PokemonCaught {
     user: string;
@@ -17,15 +18,26 @@ export function Leaderboard() {
     const { data: pokemon, error: pokemonError, isLoading: pokemonLoading } = useSWR("/api/leaderboard/pokemon_caught", fetcher)
     const { data: pokedex, error: pokedexError, isLoading: pokedexLoading } = useSWR("/api/leaderboard/pokedex_caught", fetcher)
 
-    const pokemonRowMapper = (item: PokemonCaught) => ({
-        name: item.user,
-        score: item.pokemon_caught
-    });
+    useEffect(() => {
+        console.log("Pokemon data:", pokemon);
+        console.log("Pokedex data:", pokedex);
+    }, [pokemon, pokedex])
 
-    const pokedexRowMapper = (item: PokedexCaught) => ({
-        name: item.user,
-        score: item.pokedex_caught
-    });
+    const pokemonRowMapper = (item: PokemonCaught) => {
+        console.log("Mapping PokemonCaught item:", item);
+        return {
+            name: item.user,
+            score: item.pokemon_caught // Ensure the score is mapped correctly
+        };
+    };
+
+    const pokedexRowMapper = (item: PokedexCaught) => {
+        console.log("Mapping PokedexCaught item:", item);
+        return {
+            name: item.user,
+            score: item.pokedex_caught // Ensure the score is mapped correctly
+        };
+    };
 
     return (
         <div className="flex flex-col items-center m-4 lg:m-16">

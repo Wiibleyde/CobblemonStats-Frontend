@@ -6,7 +6,8 @@ interface LeaderboardTableProps<T> {
     loading: boolean;
     error: boolean;
     elements: T[];
-    rowMapper: (element: T) => RowProps;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    rowMapper: (element: T) => RowProps | any;
 }
 
 export function LeaderboardTable<T>({ title, loading, error, elements, rowMapper }: LeaderboardTableProps<T>) {
