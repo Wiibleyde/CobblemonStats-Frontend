@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   authors: [{
     name: "Wiibleyde",
     url: "https://nathan.bonnell.fr",
+  },
+  {
+    name: "JusteKal",
+    url: "https://github.com/JusteKal/",
   }],
 }
 
@@ -21,7 +25,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar />
-        {children}
+        <div className="mt-16">
+          {children}
+        </div>
       </body>
     </html>
   );

@@ -60,7 +60,7 @@ export function Leaderboard() {
         visibleCategories.includes(Category.Cobblemon) ? "/api/leaderboard/pokedex_caught" : null, fetcher
     );
     const { data: playtime, error: playtimeError, isLoading: playtimeLoading } = useSWR(
-        visibleCategories.includes(Category.Minecraft) ? "/api/leaderboard/playtime" : null, fetcher
+        visibleCategories.includes(Category.Other) ? "/api/leaderboard/playtime" : null, fetcher
     );
     const { data: deaths, error: deathsError, isLoading: deathsLoading } = useSWR(
         visibleCategories.includes(Category.Minecraft) ? "/api/leaderboard/deaths" : null, fetcher
@@ -72,10 +72,10 @@ export function Leaderboard() {
         visibleCategories.includes(Category.Minecraft) ? "/api/leaderboard/distance_traveled" : null, fetcher
     );
     const { data: lootballOpenned, error: lootballOpennedError, isLoading: lootballOpennedLoading } = useSWR(
-        visibleCategories.includes(Category.Other) ? "/api/leaderboard/lootball_openned" : null, fetcher
+        visibleCategories.includes(Category.Cobblemon) ? "/api/leaderboard/lootball_openned" : null, fetcher
     );
     const { data: lootrChestsOpenned, error: lootrChestsOpennedError, isLoading: lootrChestsOpennedLoading } = useSWR(
-        visibleCategories.includes(Category.Other) ? "/api/leaderboard/lootr_chests_openned" : null, fetcher
+        visibleCategories.includes(Category.Cobblemon) ? "/api/leaderboard/lootr_chests_openned" : null, fetcher
     );
 
     const pokemonRowMapper = (item: PokemonCaught) => {
@@ -178,19 +178,28 @@ export function Leaderboard() {
                                 rowMapper={pokedexRowMapper}
                             />
                         </div>
+                        <div className="w-full">
+                            <LeaderboardTable
+                                title="Lootballs ouvertes"
+                                loading={lootballOpennedLoading}
+                                error={lootballOpennedError}
+                                elements={lootballOpenned}
+                                rowMapper={lootballOpennedRowMapper}
+                            />
+                        </div>
+                        <div className="w-full">
+                            <LeaderboardTable
+                                title="Coffres Lootr ouverts"
+                                loading={lootrChestsOpennedLoading}
+                                error={lootrChestsOpennedError}
+                                elements={lootrChestsOpenned}
+                                rowMapper={lootrChestsOpennedRowMapper}
+                            />
+                        </div>
                     </>
                 )}
                 {visibleCategories.includes(Category.Minecraft) && (
                     <>
-                        <div className="w-full">
-                            <LeaderboardTable
-                                title="Temps de jeu"
-                                loading={playtimeLoading}
-                                error={playtimeError}
-                                elements={playtime}
-                                rowMapper={playtimeRowMapper}
-                            />
-                        </div>
                         <div className="w-full">
                             <LeaderboardTable
                                 title="Morts"
@@ -224,20 +233,11 @@ export function Leaderboard() {
                     <>
                         <div className="w-full">
                             <LeaderboardTable
-                                title="Lootballs ouvertes"
-                                loading={lootballOpennedLoading}
-                                error={lootballOpennedError}
-                                elements={lootballOpenned}
-                                rowMapper={lootballOpennedRowMapper}
-                            />
-                        </div>
-                        <div className="w-full">
-                            <LeaderboardTable
-                                title="Coffres Lootr ouverts"
-                                loading={lootrChestsOpennedLoading}
-                                error={lootrChestsOpennedError}
-                                elements={lootrChestsOpenned}
-                                rowMapper={lootrChestsOpennedRowMapper}
+                                title="Temps de jeu (en minutes)"
+                                loading={playtimeLoading}
+                                error={playtimeError}
+                                elements={playtime}
+                                rowMapper={playtimeRowMapper}
                             />
                         </div>
                     </>
