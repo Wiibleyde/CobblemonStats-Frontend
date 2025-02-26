@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function Navbar() {
     return (
-        <div className="flex justify-between items-center p-4 bg-gray-800 shadow-lg">
+        <div className="fixed top-0 left-0 w-full bg-gray-800 p-4 flex justify-between items-center">
             <Link href="/" className="font-black text-2xl">
                 <Image src="/logo-cobblemon.png" width={50} height={50} alt="Cobblemon" className="h-8 w-8 inline-block mr-2" /><span className="text-red-500">Cobblemon</span> <span className="text-white">Stats</span>
             </Link>
