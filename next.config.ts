@@ -4,6 +4,14 @@ const isDocker = process.env.IS_DOCKER === 'true';
 
 const nextConfig: NextConfig = {
   output: isDocker ? 'standalone' : undefined,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "mc-heads.net",
+      }
+    ]
+  }
 };
 
 export default nextConfig;

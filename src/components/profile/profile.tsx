@@ -1,5 +1,6 @@
 "use client";
 import { fetcher } from "@/utils";
+import Image from "next/image";
 import useSWR from "swr";
 
 interface ProfileProps {
@@ -45,6 +46,7 @@ export function Profile({ name }: ProfileProps) {
     return (
         <div className="flex flex-col items-center min-h-screen py-8">
             <h1 className="text-4xl font-bold text-white mb-8">Profile de {name}</h1>
+            <Image src={`https://mc-heads.net/avatar/${name}`} width={128} height={128} alt="Avatar" className="rounded-sm mb-4 shadow-md" />
             <div className="flex flex-col items-center w-full lg:w-2/3">
                 {minecraftIsLoading && <p className="text-white">Chargement...</p>}
                 {minecraftError && <p className="text-red-500">Erreur: {minecraftError.toString()}</p>}
