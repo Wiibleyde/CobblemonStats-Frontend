@@ -1,7 +1,10 @@
 "use client";
+import { ServerStatus } from "@/app/api/status/route";
 import { fetcher } from "@/utils";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
+import { Online } from "./sub/Online";
 
 interface ProfileProps {
     name: string;
@@ -34,7 +37,10 @@ interface PlayerMinecraftStats {
 }
 
 export function Profile({ name }: ProfileProps) {
+    const [isOnline, setIsOnline] = useState(false);
+
     const { data: minecraftData, error: minecraftError, isLoading: minecraftIsLoading } = useSWR<PlayerMinecraftStats>(`/api/profile/${name}`, fetcher);
+    const { data: serverData, error: serverError, isLoading: serverIsLoading } = useSWR<ServerStatus>(`/api/status`, fetcher);
 
     const convertName = (name: string) => {
         name = name.replace(/^(minecraft|lootr|cobblemon|hearth_and_home|megamons|pokeblocks|amendments|biomeswevegone|another_furniture|sophisticatedstorage|sophisticatedbackpacks|naturescompass|cloudboots|cobblefoods|academy|wherearemytms|kubejs|justhammers|cobblenav|cobblemizer|convenientdecor|cobbreeding|waystones|numismatic-overhaul|myths_and_legends):/, "");
@@ -43,10 +49,19 @@ export function Profile({ name }: ProfileProps) {
         return name;
     }
 
+    const isPlayerOnline = serverData?.players.sample.some(player => player.name === name);
+
+    useEffect(() => {
+        setIsOnline(isPlayerOnline || false);
+    }, [isPlayerOnline]);
+
     return (
         <div className="flex flex-col items-center min-h-screen py-8">
             <h1 className="text-4xl font-bold text-white mb-8">Profile de {name}</h1>
             <Image src={`https://mc-heads.net/avatar/${name}`} width={128} height={128} alt="Avatar" className="rounded-sm mb-4 shadow-md" />
+            <Online isOnline={isOnline} />
+            {serverIsLoading && <p className="text-white">Chargement...</p>}
+            {serverError && <p className="text-red-500">Erreur: {serverError.toString()}</p>}
             <div className="flex flex-col items-center w-full lg:w-2/3">
                 {minecraftIsLoading && <p className="text-white">Chargement...</p>}
                 {minecraftError && <p className="text-red-500">Erreur: {minecraftError.toString()}</p>}
