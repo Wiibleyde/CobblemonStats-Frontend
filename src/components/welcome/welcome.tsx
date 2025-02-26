@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Status } from "./sub/Status";
 
 export function Welcome() {
   return (
@@ -9,6 +10,7 @@ export function Welcome() {
           Voir les classements
         </Link>
       </div>
+      <Status />
     </div>
   );
 }
