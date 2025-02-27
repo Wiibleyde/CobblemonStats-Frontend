@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
         hostname: "mc-heads.net",
       }
     ]
-  }
+  },
 };
 
 export default nextConfig;

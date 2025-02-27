@@ -1,6 +1,7 @@
 "use client"
 import { ServerStatus } from "@/app/api/status/route";
 import { fetcher } from "@/utils";
+import Link from "next/link";
 import useSWR from "swr";
 
 export function Status() {
@@ -32,7 +33,11 @@ export function Status() {
                                 <tbody className="text-center">
                                     {serverData.players.sample.map((player, i) => (
                                         <tr key={i} className="border-t border-gray-600">
-                                            <td className="px-4 py-2">{player.name}</td>
+                                            <td className="px-4 py-2">
+                                                <Link href={`/profile/${player.name}`}>
+                                                    {player.name}
+                                                </Link>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
