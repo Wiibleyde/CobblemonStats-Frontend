@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* /Pokemon Solid.ttf */
+@font-face {
+  font-family: 'Pokemon Solid';
+  src: url('/Pokemon Solid.ttf') format('truetype');
+}
+
+/* /Pokemon Hollow.ttf */
+@font-face {
+  font-family: 'Pokemon Hollow';
+  src: url('/Pokemon Hollow.ttf') format('truetype');
+}
+
 body {
   background-image: url('/cobblemon.jpg');
   background-size: cover;
@@ -31,4 +43,12 @@ a {
 
 a:hover {
   color: #ff6347;
+}
+
+.pokemonFont {
+  font-family: 'Pokemon Solid', sans-serif;
+}
+
+.pokemonFontHollow {
+  font-family: 'Pokemon Hollow', sans-serif;
 }

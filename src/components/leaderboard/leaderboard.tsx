@@ -1,13 +1,13 @@
-"use client"
-import useSWR from "swr"
-import { fetcher } from "@/utils";
-import { LeaderboardTable } from "./sub/LeaderboardTable";
-import { useState } from "react";
+'use client';
+import useSWR from 'swr';
+import { fetcher } from '@/utils';
+import { LeaderboardTable } from './sub/LeaderboardTable';
+import { useState } from 'react';
 
 enum Category {
     Minecraft,
     Cobblemon,
-    Other
+    Other,
 }
 
 export interface PokemonCaught {
@@ -53,86 +53,105 @@ export interface LootrChestsOpenned {
 export function Leaderboard() {
     const [visibleCategories, setVisibleCategories] = useState<Category[]>([]);
 
-    const { data: pokemon, error: pokemonError, isLoading: pokemonLoading } = useSWR(
-        visibleCategories.includes(Category.Cobblemon) ? "/api/leaderboard/pokemon_caught" : null, fetcher
-    );
-    const { data: pokedex, error: pokedexError, isLoading: pokedexLoading } = useSWR(
-        visibleCategories.includes(Category.Cobblemon) ? "/api/leaderboard/pokedex_caught" : null, fetcher
-    );
-    const { data: playtime, error: playtimeError, isLoading: playtimeLoading } = useSWR(
-        visibleCategories.includes(Category.Other) ? "/api/leaderboard/playtime" : null, fetcher
-    );
-    const { data: deaths, error: deathsError, isLoading: deathsLoading } = useSWR(
-        visibleCategories.includes(Category.Minecraft) ? "/api/leaderboard/deaths" : null, fetcher
-    );
-    const { data: sneakTime, error: sneakTimeError, isLoading: sneakTimeLoading } = useSWR(
-        visibleCategories.includes(Category.Minecraft) ? "/api/leaderboard/sneak_time" : null, fetcher
-    );
-    const { data: distanceTraveled, error: distanceTraveledError, isLoading: distanceTraveledLoading } = useSWR(
-        visibleCategories.includes(Category.Minecraft) ? "/api/leaderboard/distance_traveled" : null, fetcher
-    );
-    const { data: lootballOpenned, error: lootballOpennedError, isLoading: lootballOpennedLoading } = useSWR(
-        visibleCategories.includes(Category.Cobblemon) ? "/api/leaderboard/lootball_openned" : null, fetcher
-    );
-    const { data: lootrChestsOpenned, error: lootrChestsOpennedError, isLoading: lootrChestsOpennedLoading } = useSWR(
-        visibleCategories.includes(Category.Cobblemon) ? "/api/leaderboard/lootr_chests_openned" : null, fetcher
+    const {
+        data: pokemon,
+        error: pokemonError,
+        isLoading: pokemonLoading,
+    } = useSWR(visibleCategories.includes(Category.Cobblemon) ? '/api/leaderboard/pokemon_caught' : null, fetcher);
+    const {
+        data: pokedex,
+        error: pokedexError,
+        isLoading: pokedexLoading,
+    } = useSWR(visibleCategories.includes(Category.Cobblemon) ? '/api/leaderboard/pokedex_caught' : null, fetcher);
+    const {
+        data: playtime,
+        error: playtimeError,
+        isLoading: playtimeLoading,
+    } = useSWR(visibleCategories.includes(Category.Other) ? '/api/leaderboard/playtime' : null, fetcher);
+    const {
+        data: deaths,
+        error: deathsError,
+        isLoading: deathsLoading,
+    } = useSWR(visibleCategories.includes(Category.Minecraft) ? '/api/leaderboard/deaths' : null, fetcher);
+    const {
+        data: sneakTime,
+        error: sneakTimeError,
+        isLoading: sneakTimeLoading,
+    } = useSWR(visibleCategories.includes(Category.Minecraft) ? '/api/leaderboard/sneak_time' : null, fetcher);
+    const {
+        data: distanceTraveled,
+        error: distanceTraveledError,
+        isLoading: distanceTraveledLoading,
+    } = useSWR(visibleCategories.includes(Category.Minecraft) ? '/api/leaderboard/distance_traveled' : null, fetcher);
+    const {
+        data: lootballOpenned,
+        error: lootballOpennedError,
+        isLoading: lootballOpennedLoading,
+    } = useSWR(visibleCategories.includes(Category.Cobblemon) ? '/api/leaderboard/lootball_openned' : null, fetcher);
+    const {
+        data: lootrChestsOpenned,
+        error: lootrChestsOpennedError,
+        isLoading: lootrChestsOpennedLoading,
+    } = useSWR(
+        visibleCategories.includes(Category.Cobblemon) ? '/api/leaderboard/lootr_chests_openned' : null,
+        fetcher
     );
 
     const pokemonRowMapper = (item: PokemonCaught) => {
         return {
             name: item.user,
-            score: item.pokemon_caught // Ensure the score is mapped correctly
+            score: item.pokemon_caught, // Ensure the score is mapped correctly
         };
     };
 
     const pokedexRowMapper = (item: PokedexCaught) => {
         return {
             name: item.user,
-            score: item.pokedex_caught // Ensure the score is mapped correctly
+            score: item.pokedex_caught, // Ensure the score is mapped correctly
         };
     };
 
     const playtimeRowMapper = (item: Playtime) => {
         return {
             name: item.user,
-            score: item.playtime // Ensure the score is mapped correctly
+            score: item.playtime, // Ensure the score is mapped correctly
         };
     };
 
     const deathsRowMapper = (item: Death) => {
         return {
             name: item.user,
-            score: item.deaths // Ensure the score is mapped correctly
+            score: item.deaths, // Ensure the score is mapped correctly
         };
     };
 
     const sneakTimeRowMapper = (item: SneakTime) => {
         return {
             name: item.user,
-            score: item.sneak_time // Ensure the score is mapped correctly
+            score: item.sneak_time, // Ensure the score is mapped correctly
         };
-    }
+    };
 
     const distanceTraveledRowMapper = (item: DistanceTraveled) => {
         return {
             name: item.user,
-            score: item.distance_traveled // Ensure the score is mapped correctly
+            score: item.distance_traveled, // Ensure the score is mapped correctly
         };
-    }
+    };
 
     const lootballOpennedRowMapper = (item: LootballOpenned) => {
         return {
             name: item.user,
-            score: item.lootball_openned // Ensure the score is mapped correctly
+            score: item.lootball_openned, // Ensure the score is mapped correctly
         };
-    }
+    };
 
     const lootrChestsOpennedRowMapper = (item: LootrChestsOpenned) => {
         return {
             name: item.user,
-            score: item.lootr_chests_openned // Ensure the score is mapped correctly
+            score: item.lootr_chests_openned, // Ensure the score is mapped correctly
         };
-    }
+    };
 
     return (
         <div className="flex flex-col items-center m-4 lg:m-16">
@@ -140,19 +159,37 @@ export function Leaderboard() {
             <div className="flex space-x-4 mb-8 font-semibold">
                 <button
                     className={`px-4 py-2 rounded ${visibleCategories.includes(Category.Cobblemon) ? 'bg-red-500 text-white' : 'bg-gray-200 text-black'} hover:bg-red-600 hover:text-white transition-colors duration-200`}
-                    onClick={() => setVisibleCategories(visibleCategories.includes(Category.Cobblemon) ? visibleCategories.filter(category => category !== Category.Cobblemon) : [...visibleCategories, Category.Cobblemon])}
+                    onClick={() =>
+                        setVisibleCategories(
+                            visibleCategories.includes(Category.Cobblemon)
+                                ? visibleCategories.filter((category) => category !== Category.Cobblemon)
+                                : [...visibleCategories, Category.Cobblemon]
+                        )
+                    }
                 >
                     Cobblemon
                 </button>
                 <button
                     className={`px-4 py-2 rounded ${visibleCategories.includes(Category.Minecraft) ? 'bg-red-500 text-white' : 'bg-gray-200 text-black'} hover:bg-red-600 hover:text-white transition-colors duration-200`}
-                    onClick={() => setVisibleCategories(visibleCategories.includes(Category.Minecraft) ? visibleCategories.filter(category => category !== Category.Minecraft) : [...visibleCategories, Category.Minecraft])}
+                    onClick={() =>
+                        setVisibleCategories(
+                            visibleCategories.includes(Category.Minecraft)
+                                ? visibleCategories.filter((category) => category !== Category.Minecraft)
+                                : [...visibleCategories, Category.Minecraft]
+                        )
+                    }
                 >
                     Minecraft
                 </button>
                 <button
                     className={`px-4 py-2 rounded ${visibleCategories.includes(Category.Other) ? 'bg-red-500 text-white' : 'bg-gray-200 text-black'} hover:bg-red-600 hover:text-white transition-colors duration-200`}
-                    onClick={() => setVisibleCategories(visibleCategories.includes(Category.Other) ? visibleCategories.filter(category => category !== Category.Other) : [...visibleCategories, Category.Other])}
+                    onClick={() =>
+                        setVisibleCategories(
+                            visibleCategories.includes(Category.Other)
+                                ? visibleCategories.filter((category) => category !== Category.Other)
+                                : [...visibleCategories, Category.Other]
+                        )
+                    }
                 >
                     Autres
                 </button>
@@ -244,5 +281,5 @@ export function Leaderboard() {
                 )}
             </div>
         </div>
-    )
+    );
 }

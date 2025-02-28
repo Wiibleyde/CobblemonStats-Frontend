@@ -1,5 +1,5 @@
-import { RowProps } from "./Row";
-import { Table } from "./Table";
+import { RowProps } from './Row';
+import { Table } from './Table';
 
 interface LeaderboardTableProps<T> {
     title: string;

@@ -1,4 +1,4 @@
-import { Row, type RowProps } from "./Row";
+import { Row, type RowProps } from './Row';
 
 interface TableProps<T> {
     name: string;
@@ -23,5 +23,5 @@ export function Table<T>({ elements, rowMapper }: TableProps<T>) {
                 ))}
             </tbody>
         </table>
-    )
+    );
 }
