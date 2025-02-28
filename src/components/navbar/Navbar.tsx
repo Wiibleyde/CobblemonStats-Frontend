@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import LogoCobblemon from '@public/logo-cobblemon.png';
 
 export function Navbar() {
     return (
         <div className="fixed top-0 left-0 w-full bg-gray-800 p-4 flex justify-between items-center">
             <Link href="/" className="font-black text-2xl pokemonFont">
                 <Image
-                    src="/logo-cobblemon.png"
+                    src={LogoCobblemon}
                     width={50}
                     height={50}
                     alt="Cobblemon"

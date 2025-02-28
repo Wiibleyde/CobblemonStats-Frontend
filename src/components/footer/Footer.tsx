@@ -2,6 +2,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import LogoCobblemon from '@public/logo-cobblemon.png';
+
 export function Footer() {
     return (
         <footer className="bg-gray-800 text-white py-10 px-6 border-t-2 border-gray-800 mt-auto">
@@ -21,7 +23,7 @@ export function Footer() {
                     </ul>
                     <Link href="/" className="font-black text-2xl pokemonFont">
                         <Image
-                            src="/logo-cobblemon.png"
+                            src={LogoCobblemon}
                             width={50}
                             height={50}
                             alt="Cobblemon"
